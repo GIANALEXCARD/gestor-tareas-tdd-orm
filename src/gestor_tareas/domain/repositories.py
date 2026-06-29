@@ -1,0 +1,19 @@
+from __future__ import annotations
+
+from typing import Protocol
+
+from gestor_tareas.domain.entities import Category, CategoryId, Task, TaskId
+
+
+class TaskManagerRepository(Protocol):
+    def create_category(self, name: str) -> Category: ...
+
+    def get_category(self, category_id: CategoryId) -> Category | None: ...
+
+    def create_task(self, title: str, category_id: CategoryId) -> Task: ...
+
+    def get_task(self, task_id: TaskId) -> Task | None: ...
+
+    def update_task(self, task: Task) -> Task: ...
+
+    def list_tasks_by_category(self, category_id: CategoryId) -> list[Task]: ...
